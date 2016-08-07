@@ -18,7 +18,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
 
   # Dependencies
-  gem.required_ruby_version = '>= 1.9.2'
+  gem.required_ruby_version = '>= 2.2.0'
   gem.add_runtime_dependency 'pry', '>= 0.9.10', '< 0.11.0'
   gem.add_runtime_dependency 'ruby-debug-base', '~> 0.10.4'
 
