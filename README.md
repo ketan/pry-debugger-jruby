@@ -117,6 +117,7 @@ Patches and bug reports are welcome. Just send a [pull request][pullrequests] or
 
 [pry]:                http://pry.github.com
 [pry-remote]:         https://github.com/Mon-Ouie/pry-remote
+[pry-nav]:            https://github.com/nixme/pry-nav
 [pullrequests]:       https://github.com/nixme/pry-debugger/pulls
 [issues]:             https://github.com/nixme/pry-debugger/issues
 [changelog]:          https://github.com/nixme/pry-debugger/blob/master/CHANGELOG.md
