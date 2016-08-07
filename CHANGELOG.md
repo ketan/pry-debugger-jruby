@@ -1,12 +1,18 @@
+## 1.0.0.dev (2016)
+
+* Revamp documentation for JRuby usage
+* Add workaround for using `step` in JRuby
+* Fix circular require warning
+* Fixed missing banner in commands causing uninitialized variable warning
+* Drop support for ruby < 2.2
+
 ## 0.2.3 (2014-07-02)
 
 * Support [pry] 0.10
 
-
 ## 0.2.2 (2013-03-07)
 
 * Relaxed [debugger][debugger] dependency.
-
 
 ## 0.2.1 (2012-12-26)
 
@@ -17,13 +23,11 @@
 * Safer `alias_method_chain`-style patching of `Pry.start` and
   `PryRemote::Server#teardown`. (@benizi)
 
-
 ## 0.2.0 (2012-06-11)
 
 * Breakpoints
 * **finish** command
 * Internal cleanup and bug fixes
-
 
 ## 0.1.0 (2012-06-07)
 
