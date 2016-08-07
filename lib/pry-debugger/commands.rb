@@ -49,6 +49,12 @@ module PryDebugger
     create_command 'finish' do
       description 'Execute until current stack frame returns.'
 
+      banner <<-BANNER
+        Usage: finish
+
+        Execute until current stack frame returns.
+      BANNER
+
       def process
         check_file_context
         breakout_navigation :finish
@@ -57,7 +63,13 @@ module PryDebugger
 
 
     create_command 'continue' do
-      description 'Continue program execution and end the Pry session.'
+      description 'End the Pry session and continue program execution.'
+
+      banner <<-BANNER
+        Usage: finish
+
+        End the Pry session and continue program execution.
+      BANNER
 
       def process
         check_file_context
