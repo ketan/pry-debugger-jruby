@@ -2,7 +2,7 @@ require 'pry' unless defined? Pry
 require 'pry-debugger/processor'
 
 class << Pry
-  alias_method :start_without_pry_debugger, :start
+  alias start_without_pry_debugger start
   attr_reader :processor
 
   def start_with_pry_debugger(target = TOPLEVEL_BINDING, options = {})
@@ -19,5 +19,5 @@ class << Pry
       start_without_pry_debugger(target, options)
     end
   end
-  alias_method :start, :start_with_pry_debugger
+  alias start start_with_pry_debugger
 end

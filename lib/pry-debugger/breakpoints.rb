@@ -1,12 +1,10 @@
 module PryDebugger
-
   # Wrapper for Debugger.breakpoints that respects our Processor and has better
   # failure behavior. Acts as an Enumerable.
   #
   module Breakpoints
     extend Enumerable
     extend self
-
 
     # Add a new breakpoint.
     def add(file, line, expression = nil)
@@ -78,8 +76,7 @@ module PryDebugger
       breakpoint
     end
 
-
-   private
+    private
 
     def change_status(id, enabled = true)
       breakpoint = find_by_id(id)
@@ -88,7 +85,7 @@ module PryDebugger
     end
 
     def validate_expression(expression)
-      if expression &&   # `nil` implies no expression given, so pass
+      if expression && # `nil` implies no expression given, so pass
           (expression.empty? || !Pry::Code.complete_expression?(expression))
         raise "Invalid breakpoint conditional: #{expression}"
       end

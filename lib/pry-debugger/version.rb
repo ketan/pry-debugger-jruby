@@ -1,3 +1,3 @@
 module PryDebugger
-  VERSION = '0.2.3'
+  VERSION = '0.2.3'.freeze
 end

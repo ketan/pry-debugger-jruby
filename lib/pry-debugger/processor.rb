@@ -12,18 +12,18 @@ module PryDebugger
     end
 
     # Wrap a Pry REPL to catch navigational commands and act on them.
-    def run(initial = true, &block)
+    def run(initial = true)
       return_value = nil
-      command = catch(:breakout_nav) do  # Throws from PryDebugger::Commands
+      command = catch(:breakout_nav) do # Throws from PryDebugger::Commands
         return_value = yield
-        {}    # Nothing thrown == no navigational command
+        {}                              # Nothing thrown == no navigational command
       end
 
-      times = (command[:times] || 1).to_i   # Command argument
+      times = (command[:times] || 1).to_i # Command argument
       times = 1 if times <= 0
 
       if [:step, :next, :finish].include? command[:action]
-        @pry = command[:pry]   # Pry instance to resume after stepping
+        @pry = command[:pry] # Pry instance to resume after stepping
         Debugger.start unless Debugger.started?
 
         if initial
@@ -63,10 +63,9 @@ module PryDebugger
       end
     end
 
-
     # --- Callbacks from debugger C extension ---
 
-    def at_line(context, file, line)
+    def at_line(context, file, _line)
       return if file && TRACE_IGNORE_FILES.include?(File.expand_path(file))
 
       # If stopped for a breakpoint or catchpoint, can't play any delayed steps
@@ -74,7 +73,7 @@ module PryDebugger
       # possible, but just keeping assertions in check.)
       @delayed = Hash.new(0) unless :step == context.stop_reason
 
-      if @delayed[:next] > 1     # If any delayed nexts/steps, do 'em.
+      if @delayed[:next] > 1 # If any delayed nexts/steps, do 'em.
         step_over @delayed[:next] - 1
         @delayed = Hash.new(0)
 
@@ -86,20 +85,20 @@ module PryDebugger
         finish
         @delayed = Hash.new(0)
 
-      else  # Otherwise, resume the pry session at the stopped line.
+      else # Otherwise, resume the pry session at the stopped line.
         resume_pry context
       end
     end
 
     # Called when a breakpoint is triggered. Note: `at_line`` is called
     # immediately after with the context's `stop_reason == :breakpoint`.
-    def at_breakpoint(context, breakpoint)
+    def at_breakpoint(_context, breakpoint)
       @pry.output.print Pry::Helpers::Text.bold("\nBreakpoint #{breakpoint.id}. ")
       @pry.output.puts  (breakpoint.hit_count == 1 ?
                            'First hit.' :
-                           "Hit #{breakpoint.hit_count} times." )
+                           "Hit #{breakpoint.hit_count} times.")
       if (expr = breakpoint.expr)
-        @pry.output.print Pry::Helpers::Text.bold("Condition: ")
+        @pry.output.print Pry::Helpers::Text.bold('Condition: ')
         @pry.output.puts  expr
       end
     end
@@ -108,8 +107,7 @@ module PryDebugger
       # TODO
     end
 
-
-   private
+    private
 
     # Resume an existing Pry REPL at the paused point. Binding extracted from
     # the Debugger::Context.
@@ -141,7 +139,7 @@ module PryDebugger
     # Cleanup when debugging is stopped and execution continues.
     def stop
       Debugger.stop if !@always_enabled && Debugger.started?
-      if PryDebugger.current_remote_server   # Cleanup DRb remote if running
+      if PryDebugger.current_remote_server # Cleanup DRb remote if running
         PryDebugger.current_remote_server.teardown
       end
     end

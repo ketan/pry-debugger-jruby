@@ -12,14 +12,11 @@ module PryRemote
       end
 
       setup
-      Pry.start @object, {
-        :input  => client.input_proxy,
-        :output => client.output
-      }
+      Pry.start(@object, input: client.input_proxy, output: client.output)
     end
 
     # Override to reset our saved global current server session.
-    alias_method :teardown_without_pry_debugger, :teardown
+    alias teardown_without_pry_debugger teardown
     def teardown_with_pry_debugger
       return if @torn
 
@@ -27,7 +24,7 @@ module PryRemote
       PryDebugger.current_remote_server = nil
       @torn = true
     end
-    alias_method :teardown, :teardown_with_pry_debugger
+    alias teardown teardown_with_pry_debugger
   end
 end
 

@@ -23,7 +23,6 @@ module PryDebugger
       end
     end
 
-
     create_command 'next' do
       description 'Execute the next line within the current stack frame.'
 
@@ -45,7 +44,6 @@ module PryDebugger
       end
     end
 
-
     create_command 'finish' do
       description 'Execute until current stack frame returns.'
 
@@ -61,7 +59,6 @@ module PryDebugger
       end
     end
 
-
     create_command 'continue' do
       description 'End the Pry session and continue program execution.'
 
@@ -76,7 +73,6 @@ module PryDebugger
         run 'exit-all'
       end
     end
-
 
     create_command 'break' do
       description 'Set or edit a breakpoint.'
@@ -111,11 +107,11 @@ module PryDebugger
       BANNER
 
       def options(opt)
-        opt.on :c, :condition,     'Change the condition of a breakpoint.', :argument => true, :as => Integer
-        opt.on :s, :show,          'Show breakpoint details and source.',   :argument => true, :as => Integer
-        opt.on :D, :delete,        'Delete a breakpoint.',                  :argument => true, :as => Integer
-        opt.on :d, :disable,       'Disable a breakpoint.',                 :argument => true, :as => Integer
-        opt.on :e, :enable,        'Enable a disabled breakpoint.',         :argument => true, :as => Integer
+        opt.on :c, :condition,     'Change the condition of a breakpoint.', argument: true, as: Integer
+        opt.on :s, :show,          'Show breakpoint details and source.',   argument: true, as: Integer
+        opt.on :D, :delete,        'Delete a breakpoint.',                  argument: true, as: Integer
+        opt.on :d, :disable,       'Disable a breakpoint.',                 argument: true, as: Integer
+        opt.on :e, :enable,        'Enable a disabled breakpoint.',         argument: true, as: Integer
         opt.on     :'disable-all', 'Disable all breakpoints.'
         opt.on     :'delete-all',  'Delete all breakpoints.'
         method_options(opt)
@@ -124,11 +120,12 @@ module PryDebugger
       def process
         Pry.processor.pry = _pry_
 
-        { :delete        => :delete,
-          :disable       => :disable,
-          :enable        => :enable,
-          :'disable-all' => :disable_all,
-          :'delete-all'  => :clear
+        {
+          delete:        :delete,
+          disable:       :disable,
+          enable:        :enable,
+          'disable-all': :disable_all,
+          'delete-all':  :clear,
         }.each do |action, method|
           if opts.present?(action)
             Breakpoints.__send__ method, *(method == action ? [opts[action]] : [])
@@ -172,7 +169,6 @@ module PryDebugger
     end
     alias_command 'breakpoint', 'break'
 
-
     create_command 'breakpoints' do
       description 'List defined breakpoints.'
 
@@ -214,14 +210,13 @@ module PryDebugger
     end
     alias_command 'breaks', 'breakpoints'
 
-
     helpers do
       def breakout_navigation(action, times = nil)
-        _pry_.binding_stack.clear     # Clear the binding stack.
+        _pry_.binding_stack.clear     # Clear the binding stack
         throw :breakout_nav, {        # Break out of the REPL loop and
-          :action => action,          #   signal the tracer.
-          :times  =>  times,
-          :pry    => _pry_
+          action: action,             #   signal the tracer
+          times:  times,
+          pry:    _pry_,
         }
       end
 
@@ -244,10 +239,10 @@ module PryDebugger
           output.puts "#{text.bold('Condition:')} #{expr}"
         end
         output.puts
-        output.puts  Pry::Code.from_file(breakpoint.source).
-                       around(line, 3).
-                       with_line_numbers.
-                       with_marker(line).to_s
+        output.puts(
+          Pry::Code.from_file(breakpoint.source)
+            .around(line, 3).with_line_numbers.with_marker(line).to_s
+        )
         output.puts
       end
     end
