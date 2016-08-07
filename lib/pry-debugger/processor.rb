@@ -1,5 +1,5 @@
 require 'pry'
-require 'debugger'
+require 'ruby-debug-base'
 
 module PryDebugger
   class Processor
