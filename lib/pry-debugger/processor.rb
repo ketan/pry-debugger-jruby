@@ -7,7 +7,7 @@ module PryDebugger
 
     def initialize
       Debugger.handler = self
-      @always_enabled = false
+      @always_enabled = true # FIXME: JRuby workaround
       @delayed = Hash.new(0)
     end
 
