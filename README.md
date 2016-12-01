@@ -1,10 +1,10 @@
 # pry-debugger
 
-_JRuby 9k-compatible pry debugger._
+_JRuby 9k-compatible pry debugging!_
 
 Using MRI? I strongly recommend [`pry-byebug`][pry-byebug] instead!
 
-Adds `step`, `next`, `finish`, and `continue` commands and `breakpoints` to [Pry][pry] using [ruby-debug][ruby-debug].
+Adds `step`, `next`, `finish`, and `continue` commands and `breakpoints` to [Pry][pry].
 
 To use, run JRuby with the `--debug` flag, and then invoke `pry` normally:
 
@@ -35,7 +35,7 @@ You can set and adjust breakpoints directly from a Pry session using the followi
 
     Examples:
 
-    ```
+    ```ruby
 break SomeClass#run            Break at the start of `SomeClass#run`.
 break Foo#bar if baz?          Break at `Foo#bar` only if `baz?`.
 break app/models/user.rb:15    Break at line 15 in user.rb.
@@ -54,12 +54,6 @@ break --show 2                 Show details about breakpoint #2.
     Type `break --help` from a Pry session to see all available options.
 
 * `breakpoints`: List all defined breakpoints. Pass `-v` or `--verbose` to see the source code around each breakpoint.
-
-## Caveats
-
-**pry-debugger** is not yet thread-safe, so only use in single-threaded environments.
-
-Targets JRuby 9k only. If you're using MRI, I recommend using [`pry-byebug`][pry-byebug] instead.
 
 ## Remote debugging
 
