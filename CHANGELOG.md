@@ -1,11 +1,11 @@
-## 1.0.0.dev (2016)
+## 1.0.0 (2016-12-01)
 
 * Revamp documentation for JRuby usage
 * Add workaround for using `step` in JRuby
 * Fix circular require warning
 * Fixed missing banner in commands causing uninitialized variable warning
 * Drop support for ruby < 2.2
-* Officially forked from `pry-debugger`
+* Officially forked from `pry-debugger`, renaming gem to `pry-debugger-jruby` and releasing on RubyGems
 
 ## 0.2.3 (2014-07-02)
 
