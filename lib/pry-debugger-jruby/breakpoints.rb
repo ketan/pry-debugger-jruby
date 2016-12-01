@@ -1,4 +1,4 @@
-module PryDebugger
+module PryDebuggerJRuby
   # Wrapper for Debugger.breakpoints that respects our Processor and has better
   # failure behavior. Acts as an Enumerable.
   #

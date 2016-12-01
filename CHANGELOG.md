@@ -5,6 +5,7 @@
 * Fix circular require warning
 * Fixed missing banner in commands causing uninitialized variable warning
 * Drop support for ruby < 2.2
+* Officially forked from `pry-debugger`
 
 ## 0.2.3 (2014-07-02)
 

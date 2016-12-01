@@ -1,10 +1,10 @@
-# pry-debugger
+# pry-debugger-jruby
 
 _JRuby 9k-compatible pry debugging!_
 
-Using MRI? I strongly recommend [`pry-byebug`][pry-byebug] instead!
+Using MRI? I strongly recommend [`pry-byebug`](https://github.com/deivid-rodriguez/pry-byebug) instead!
 
-Adds `step`, `next`, `finish`, and `continue` commands and `breakpoints` to [Pry][pry].
+Adds `step`, `next`, `finish`, and `continue` commands and `breakpoints` to [Pry](http://pry.github.com).
 
 To use, run JRuby with the `--debug` flag, and then invoke `pry` normally:
 
@@ -57,14 +57,14 @@ break --show 2                 Show details about breakpoint #2.
 
 ## Remote debugging
 
-Support for [pry-remote][pry-remote] (>= 0.1.4) is also included. Requires explicity requiring `pry-debugger`, not just relying on pry's plugin loader.
+Support for [pry-remote](https://github.com/Mon-Ouie/pry-remote) is also included. Requires explicity requiring `pry-debugger-jruby`, not just relying on pry's plugin loader.
 
 Want to debug a Rails app running inside `foreman`? Add to your `Gemfile`:
 
 ```ruby
 gem 'pry'
 gem 'pry-remote'
-gem 'pry-debugger'
+gem 'pry-debugger-jruby'
 ```
 
 Then add `binding.remote_pry` where you want to pause:
@@ -89,7 +89,7 @@ $ bundle exec pry-remote
 Stepping through code often? Add the following shortcuts to `~/.pryrc`:
 
 ```ruby
-if defined?(PryDebugger)
+if defined?(PryDebuggerJRuby)
   Pry.commands.alias_command 'c', 'continue'
   Pry.commands.alias_command 's', 'step'
   Pry.commands.alias_command 'n', 'next'
@@ -99,20 +99,13 @@ end
 
 ## Contributors
 
+`pry-debugger-jruby` is maintained by [@ivoanjo](https://github.com/ivoanjo/) and is based off the awesome previous work from the [`pry-debugger`](https://github.com/nixme/pry-debugger) creators:
+
 * Gopal Patel (@nixme)
 * John Mair (@banister)
 * Nicolas Viennot (@nviennot)
 * Benjamin R. Haskell (@benizi)
 * Joshua Hou (@jshou)
-* Ivo Anjo (@ivoanjo)
-* ...and others who helped with [pry-nav][pry-nav]
+* ...and others who helped with [`pry-nav`](https://github.com/nixme/pry-nav)
 
-Patches and bug reports are welcome. Just send a [pull request][pullrequests] or file an [issue][issues]. [Project changelog][changelog].
-
-[pry]:                http://pry.github.com
-[pry-remote]:         https://github.com/Mon-Ouie/pry-remote
-[pry-nav]:            https://github.com/nixme/pry-nav
-[pullrequests]:       https://github.com/nixme/pry-debugger/pulls
-[issues]:             https://github.com/nixme/pry-debugger/issues
-[changelog]:          https://github.com/nixme/pry-debugger/blob/master/CHANGELOG.md
-[pry-byebug]:         https://github.com/deivid-rodriguez/pry-byebug
+Patches and bug reports are welcome. Just send in a pull request or issue :)

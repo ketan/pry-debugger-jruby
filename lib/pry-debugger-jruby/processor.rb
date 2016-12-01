@@ -1,7 +1,7 @@
 require 'pry' unless defined? Pry
 require 'ruby-debug-base'
 
-module PryDebugger
+module PryDebuggerJRuby
   class Processor
     attr_accessor :pry
 
@@ -14,7 +14,7 @@ module PryDebugger
     # Wrap a Pry REPL to catch navigational commands and act on them.
     def run(initial = true)
       return_value = nil
-      command = catch(:breakout_nav) do # Throws from PryDebugger::Commands
+      command = catch(:breakout_nav) do # Throws from PryDebuggerJRuby::Commands
         return_value = yield
         {}                              # Nothing thrown == no navigational command
       end
@@ -139,8 +139,8 @@ module PryDebugger
     # Cleanup when debugging is stopped and execution continues.
     def stop
       Debugger.stop if !@always_enabled && Debugger.started?
-      if PryDebugger.current_remote_server # Cleanup DRb remote if running
-        PryDebugger.current_remote_server.teardown
+      if PryDebuggerJRuby.current_remote_server # Cleanup DRb remote if running
+        PryDebuggerJRuby.current_remote_server.teardown
       end
     end
   end

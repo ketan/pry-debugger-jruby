@@ -1,14 +1,14 @@
 require 'pry' unless defined? Pry
-require 'pry-debugger/processor'
+require 'pry-debugger-jruby/processor'
 
 class << Pry
   alias start_without_pry_debugger start
   attr_reader :processor
 
   def start_with_pry_debugger(target = TOPLEVEL_BINDING, options = {})
-    @processor ||= PryDebugger::Processor.new
+    @processor ||= PryDebuggerJRuby::Processor.new
 
-    if target.is_a?(Binding) && PryDebugger.check_file_context(target)
+    if target.is_a?(Binding) && PryDebuggerJRuby.check_file_context(target)
       # Wrap the processer around the usual Pry.start to catch navigation
       # commands.
       @processor.run(true) do
