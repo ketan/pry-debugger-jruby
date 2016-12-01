@@ -1,3 +1,7 @@
+## 1.1.0dev
+
+* Avoid stepping into pry code
+
 ## 1.0.0 (2016-12-01)
 
 * Revamp documentation for JRuby usage
