@@ -1,6 +1,7 @@
 ## 1.1.0dev
 
 * Avoid stepping into pry code
+* Add help text when running without `--debug`
 
 ## 1.0.0 (2016-12-01)
 

@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'java'
 
 module PryDebuggerJRuby
   extend self
@@ -28,6 +29,23 @@ module PryDebuggerJRuby
   def check_file_context(target)
     file = target.eval('__FILE__')
     file == Pry.eval_path || (file !~ /(\(.*\))|<.*>/ && file != '' && file != '-e')
+  end
+
+  def check_trace_enabled
+    return true if org.jruby.RubyInstanceConfig.FULL_TRACE_ENABLED
+    warn <<-EOS
+You are currently running JRuby without the --debug flag enabled, and without it this command will not work correctly.
+
+To fix it, either:
+
+* add the --debug flag to your ruby/jruby command
+* or add the --debug flag to the JRUBY_OPTS environment variable
+* or enable the jruby.debug.fullTrace option
+
+Do note that having this option on all the time has a performance penalty, so we recommend you only enable it while debugging.
+Safe prying, fellow rubyst!
+EOS
+    false
   end
 
   # Reference to currently running pry-remote server. Used by the processor.

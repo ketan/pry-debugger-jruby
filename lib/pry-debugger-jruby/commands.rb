@@ -141,6 +141,7 @@ module PryDebuggerJRuby
         elsif args.empty?
           run 'breakpoints'
         else
+          return unless PryDebuggerJRuby.check_trace_enabled
           new_breakpoint
         end
       end
@@ -212,6 +213,8 @@ module PryDebuggerJRuby
 
     helpers do
       def breakout_navigation(action, times = nil)
+        return unless PryDebuggerJRuby.check_trace_enabled
+
         _pry_.binding_stack.clear     # Clear the binding stack
         throw :breakout_nav, {        # Break out of the REPL loop and
           action: action,             #   signal the tracer
