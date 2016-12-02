@@ -1,4 +1,4 @@
-## 1.1.0dev
+## 1.1.0 (2016-12-02)
 
 * Avoid stepping into pry code
 * Add help text when running without `--debug`
