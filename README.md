@@ -31,11 +31,10 @@ You can also add the `--debug` flag to your `JRUBY_OPTS` environment variable, s
 
 You can set and adjust breakpoints directly from a Pry session using the following commands:
 
-* `break`: Set a new breakpoint from a line number in the current file, a file and line number, or a method. Pass an optional expression to create a conditional breakpoint. Edit existing breakpoints via various flags.
+* `break`: Set a new breakpoint from a line number in the current file, a file and line number, or a method. Pass an optional expression to create a conditional breakpoint. Edit existing breakpoints via various flags. Type `break --help` from a Pry session to see all available options.
 
     Examples:
-
-    ```ruby
+```ruby
 break SomeClass#run            Break at the start of `SomeClass#run`.
 break Foo#bar if baz?          Break at `Foo#bar` only if `baz?`.
 break app/models/user.rb:15    Break at line 15 in user.rb.
@@ -49,9 +48,7 @@ break --disable-all            Disable all breakpoints.
 
 break                          List all breakpoints. (Same as `breakpoints`)
 break --show 2                 Show details about breakpoint #2.
-    ```
-
-    Type `break --help` from a Pry session to see all available options.
+```
 
 * `breakpoints`: List all defined breakpoints. Pass `-v` or `--verbose` to see the source code around each breakpoint.
 
@@ -99,13 +96,13 @@ end
 
 ## Contributors
 
-`pry-debugger-jruby` is maintained by [@ivoanjo](https://github.com/ivoanjo/) and is based off the awesome previous work from the [`pry-debugger`](https://github.com/nixme/pry-debugger) creators:
+`pry-debugger-jruby` is maintained by [Ivo Anjo](https://github.com/ivoanjo/) and is based off the awesome previous work from the [`pry-debugger`](https://github.com/nixme/pry-debugger) creators:
 
-* Gopal Patel (@nixme)
-* John Mair (@banister)
-* Nicolas Viennot (@nviennot)
-* Benjamin R. Haskell (@benizi)
-* Joshua Hou (@jshou)
+* [Gopal Patel](https://github.com/nixme)
+* [John Mair](https://github.com/banister)
+* [Nicolas Viennot](https://github.com/nviennot)
+* [Benjamin R. Haskell](https://github.com/benizi)
+* [Joshua Hou](https://github.com/jshou)
 * ...and others who helped with [`pry-nav`](https://github.com/nixme/pry-nav)
 
 Patches and bug reports are welcome. Just send in a pull request or issue :)
