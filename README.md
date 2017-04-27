@@ -2,6 +2,8 @@
 
 _JRuby 9k-compatible pry debugging!_
 
+Requires JRuby >= 9.1.3.0.
+
 Using MRI? I strongly recommend [`pry-byebug`](https://github.com/deivid-rodriguez/pry-byebug) instead!
 
 Adds `step`, `next`, `finish`, and `continue` commands and `breakpoints` to [Pry](http://pry.github.com).
