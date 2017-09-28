@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 2.2.0'
 
-  spec.add_runtime_dependency 'pry', '>= 0.10', '< 0.11'
+  spec.add_runtime_dependency 'pry', '>= 0.10', '< 0.12'
   spec.add_runtime_dependency 'ruby-debug-base', '~> 0.10.4'
 
   spec.add_development_dependency 'pry-remote', '~> 0.1.6'
